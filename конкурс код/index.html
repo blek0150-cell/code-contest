@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Знаходження НСД та НСК</title>
+<style>
+body {
+    font-family: "Comic Sans MS", Arial, sans-serif;
+    background: #fffae3;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+h1 {
+    color: #ff6f61;
+}
+.task {
+    background: #fff8dc;
+    border: 2px dashed #ff6f61;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    border-radius: 10px;
+}
+input {
+    margin: 5px;
+    padding: 5px;
+    width: 80px;
+    border-radius: 5px;
+    border: 1px solid #ff6f61;
+}
+button {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffb347;
+    color: #fff;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #ff7b00;
+}
+p.result {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ff6f61;
+}
+</style>
+</head>
+<body>
+
+<h1>Знаходження НСД та НСК 😎</h1>
+
+<div class="task">
+<h2>Обчислити НСД</h2>
+<input type="number" id="num1" placeholder="Число 1">
+<input type="number" id="num2" placeholder="Число 2">
+<br>
+<button onclick="calculateGCD()">Знайти НСД</button>
+<p id="gcdResult" class="result"></p>
+</div>
+
+<div class="task">
+<h2>Обчислити НСК</h2>
+<input type="number" id="n1" placeholder="Число 1">
+<input type="number" id="n2" placeholder="Число 2">
+<br>
+<button onclick="calculateLCM()">Знайти НСК</button>
+<p id="lcmResult" class="result"></p>
+</div>
+
+<script>
+function calculateGCD() {
+    let a = parseInt(document.getElementById('num1').value);
+    let b = parseInt(document.getElementById('num2').value);
+    if(isNaN(a) || isNaN(b)) { 
+        document.getElementById('gcdResult').innerText = "Введи числа! 😅"; 
+        return; 
+    }
+    let x = a, y = b;
+    while(y) {
+        let t = y;
+        y = x % y;
+        x = t;
+    }
+    document.getElementById('gcdResult').innerText = `НСД = ${x}`;
+}
+
+function calculateLCM() {
+    let a = parseInt(document.getElementById('n1').value);
+    let b = parseInt(document.getElementById('n2').value);
+    if(isNaN(a) || isNaN(b)) { 
+        document.getElementById('lcmResult').innerText = "Введи числа! 😅"; 
+        return; 
+    }
+    let x = a, y = b;
+    let gcd = x;
+    let temp = y;
+    while(temp) {
+        let t = temp;
+        temp = gcd % temp;
+        gcd = t;
+    }
+    let lcm = (a * b) / gcd;
+    document.getElementById('lcmResult').innerText = `НСК = ${lcm}`;
+}
+</script>
+
+</body>
+</html>
